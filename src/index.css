@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-navy-900 antialiased;
+  }
+  ::selection {
+    @apply bg-brand/20;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply mb-3 inline-block text-xs font-bold uppercase tracking-[0.18em] text-brand;
+  }
+  .heading-1 {
+    @apply font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-navy-950 md:text-5xl lg:text-6xl;
+  }
+  .heading-2 {
+    @apply font-display text-3xl font-bold leading-tight tracking-tight text-navy-950 md:text-4xl lg:text-[42px];
+  }
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white transition-all;
+  }
+  .grid-pattern {
+    background-image: linear-gradient(to right, #0000000a 1px, transparent 1px),
+      linear-gradient(to bottom, #0000000a 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 65% 55% at 50% 45%,
+      #000 60%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(ellipse 65% 55% at 50% 45%, #000 60%, transparent 100%);
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent;
+  }
+}
