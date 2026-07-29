@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input, Label, RadioCard, Select, Textarea } from "@/components/ui/field";
 import { SuccessModal } from "@/components/SuccessModal";
-import { COUNTRY_CODES } from "@/config/site";
+import { COUNTRY_CODES, SITE } from "@/config/site";
 import { emailRegex, submitLead } from "@/lib/leads";
 import type { LeadType } from "@/lib/leads";
 
@@ -264,7 +264,7 @@ export function LeadForm({ variant, jobTitle, compact }: LeadFormProps) {
                 onChange={(e) => set("resumeLink", e.target.value)}
               />
               <p className="mt-1.5 text-xs text-slate-500">
-                Prefer to attach a file? Email it to careers@skillforcestaffing.com after submitting.
+                Prefer to attach a file? Email it to {SITE.email} after submitting.
               </p>
             </div>
           </>

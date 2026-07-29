@@ -5,10 +5,20 @@ import { FadeIn, PageHero } from "@/components/Section";
 import { SITE } from "@/config/site";
 
 const contactCards = [
-  { icon: Mail, label: "General", value: SITE.email, href: `mailto:${SITE.email}` },
-  { icon: Building2, label: "New Business", value: SITE.salesEmail, href: `mailto:${SITE.salesEmail}` },
-  { icon: UserRound, label: "Careers", value: SITE.careersEmail, href: `mailto:${SITE.careersEmail}` },
-  { icon: Phone, label: "Phone", value: SITE.phone, href: SITE.phoneHref },
+  { icon: Mail, label: "Email us", value: SITE.email, href: `mailto:${SITE.email}` },
+  { icon: Phone, label: "Call us", value: SITE.phone, href: SITE.phoneHref },
+  {
+    icon: Building2,
+    label: "Hiring managers",
+    value: "Request talent",
+    href: `mailto:${SITE.email}?subject=Talent%20Request%20-%20SkillForce%20Staffing`,
+  },
+  {
+    icon: UserRound,
+    label: "Job seekers",
+    value: "Send your resume",
+    href: `mailto:${SITE.email}?subject=Resume%20Submission%20-%20SkillForce%20Staffing`,
+  },
 ];
 
 export default function Contact() {

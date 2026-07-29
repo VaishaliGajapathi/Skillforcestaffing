@@ -11,7 +11,7 @@
  */
 
 var SHEET_NAME = 'Leads';
-var NOTIFY_EMAIL = ''; // e.g. 'info@skillforcestaffing.com' — leave blank to disable
+var NOTIFY_EMAIL = 'skillforcestaffing@gmail.com'; // set to '' to disable email alerts
 
 var HEADERS = [
   'Timestamp',

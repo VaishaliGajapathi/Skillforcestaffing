@@ -78,9 +78,11 @@ export default function Connect() {
                   { icon: Phone, label: "Call us", value: SITE.phone, href: SITE.phoneHref },
                   {
                     icon: Mail,
-                    label: isEmployer ? "Sales" : "Careers",
-                    value: isEmployer ? SITE.salesEmail : SITE.careersEmail,
-                    href: `mailto:${isEmployer ? SITE.salesEmail : SITE.careersEmail}`,
+                    label: "Email us",
+                    value: SITE.email,
+                    href: `mailto:${SITE.email}?subject=${
+                      isEmployer ? "Talent%20Request" : "Candidate%20Enquiry"
+                    }%20-%20SkillForce%20Staffing`,
                   },
                   { icon: Clock, label: "Hours", value: SITE.hours },
                 ].map((item) => (
