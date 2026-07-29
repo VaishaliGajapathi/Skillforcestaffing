@@ -62,6 +62,29 @@ experience, work authorization, location, hiring need, resume link, message, sou
 
 ## Deploy
 
-Static SPA — deploy `dist/` to Netlify, Vercel, or Cloudflare Pages.
-`public/_redirects` is included for SPA routing on Netlify. Remember to set
-`VITE_GOOGLE_SHEETS_URL` as an environment variable in your hosting provider.
+### GitHub Pages (configured)
+
+`.github/workflows/deploy.yml` builds and publishes on every push to `main`.
+
+One-time setup in the GitHub repo:
+
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions**
+2. **Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `VITE_GOOGLE_SHEETS_URL`
+   - Value: your Apps Script `/exec` URL
+
+Live URL: `https://vaishaligajapathi.github.io/Skillforcestaffing/`
+
+The workflow builds with `VITE_BASE_PATH=/Skillforcestaffing/` and copies `index.html`
+to `404.html` so client-side routes (`/careers`, `/connect`, …) resolve on refresh.
+
+### Custom domain (skillforcestaffing.com)
+
+When you point the domain at Pages, remove `VITE_BASE_PATH` from the workflow (the base
+falls back to `/`) and add the domain under Settings → Pages.
+
+### Other hosts
+
+Static SPA — `dist/` also deploys as-is to Netlify, Vercel, or Cloudflare Pages.
+`public/_redirects` is included for SPA routing on Netlify. Set
+`VITE_GOOGLE_SHEETS_URL` as an environment variable in whichever host you use.
