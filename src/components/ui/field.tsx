@@ -8,12 +8,12 @@ import type {
 import { cn } from "@/lib/utils";
 
 const base =
-  "w-full rounded-lg border border-slate-300 bg-white px-3.5 text-[15px] text-navy-900 placeholder:text-slate-400 " +
+  "w-full min-w-0 rounded-lg border border-slate-300 bg-white text-[15px] text-navy-900 placeholder:text-slate-400 " +
   "transition-colors focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:opacity-60";
 
 export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => (
-    <input ref={ref} className={cn(base, "h-11", className)} {...props} />
+    <input ref={ref} className={cn(base, "h-11 px-3.5", className)} {...props} />
   )
 );
 Input.displayName = "Input";
@@ -22,7 +22,7 @@ export const Textarea = forwardRef<
   HTMLTextAreaElement,
   TextareaHTMLAttributes<HTMLTextAreaElement>
 >(({ className, ...props }, ref) => (
-  <textarea ref={ref} className={cn(base, "min-h-[132px] py-3", className)} {...props} />
+  <textarea ref={ref} className={cn(base, "min-h-[132px] px-3.5 py-3", className)} {...props} />
 ));
 Textarea.displayName = "Textarea";
 
@@ -30,7 +30,7 @@ export const Select = forwardRef<
   HTMLSelectElement,
   SelectHTMLAttributes<HTMLSelectElement>
 >(({ className, ...props }, ref) => (
-  <select ref={ref} className={cn(base, "h-11 pr-8", className)} {...props} />
+  <select ref={ref} className={cn(base, "h-11 cursor-pointer pl-3 pr-9", className)} {...props} />
 ));
 Select.displayName = "Select";
 

@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input, Label, RadioCard, Select, Textarea } from "@/components/ui/field";
 import { SuccessModal } from "@/components/SuccessModal";
-import { COUNTRY_CODES, SITE } from "@/config/site";
+import { COUNTRY_CODES, DEFAULT_COUNTRY_ID, SITE } from "@/config/site";
 import { emailRegex, submitLead } from "@/lib/leads";
 import type { LeadType } from "@/lib/leads";
 
@@ -18,13 +18,13 @@ interface LeadFormProps {
 const initialState = {
   name: "",
   email: "",
-  countryCode: "+1",
+  countryId: DEFAULT_COUNTRY_ID as string,
   phone: "",
   company: "",
   role: "",
   skills: "",
   experience: "3-5",
-  workAuth: "US Citizen",
+  workAuth: "Indian Citizen",
   location: "",
   hiringNeed: "1-3 roles",
   resumeLink: "",
@@ -33,12 +33,15 @@ const initialState = {
 
 const experienceOptions = ["0-2", "3-5", "6-9", "10+"];
 const workAuthOptions = [
+  "Indian Citizen",
+  "India — Work Permit / Visa Holder",
   "US Citizen",
   "Green Card",
   "H1-B",
   "H4-EAD",
   "OPT / CPT",
-  "TN Visa",
+  "UK / EU Work Permit",
+  "UAE Work Visa",
   "Other",
 ];
 const hiringNeedOptions = ["1-3 roles", "4-10 roles", "10+ roles", "Managed team / pod", "Not sure yet"];
@@ -50,8 +53,8 @@ export function LeadForm({ variant, jobTitle, compact }: LeadFormProps) {
   const [submittedName, setSubmittedName] = useState("");
 
   const country = useMemo(
-    () => COUNTRY_CODES.find((c) => c.code === form.countryCode) ?? COUNTRY_CODES[0],
-    [form.countryCode]
+    () => COUNTRY_CODES.find((c) => c.id === form.countryId) ?? COUNTRY_CODES[0],
+    [form.countryId]
   );
 
   const isTalent = variant === "candidate" || variant === "job-application";
@@ -78,7 +81,7 @@ export function LeadForm({ variant, jobTitle, compact }: LeadFormProps) {
         leadType: variant,
         name: form.name.trim(),
         email: form.email.trim(),
-        phone: `${country.code.replace("c", "")}${digits}`,
+        phone: `${country.code} ${digits}`,
         company: form.company.trim(),
         jobTitle: jobTitle ?? "",
         role: form.role.trim(),
@@ -151,13 +154,13 @@ export function LeadForm({ variant, jobTitle, compact }: LeadFormProps) {
             <div className="flex gap-2">
               <Select
                 aria-label="Country code"
-                className="w-28 shrink-0 px-2"
-                value={form.countryCode}
-                onChange={(e) => setForm((p) => ({ ...p, countryCode: e.target.value, phone: "" }))}
+                className="w-[112px] shrink-0"
+                value={form.countryId}
+                onChange={(e) => setForm((p) => ({ ...p, countryId: e.target.value, phone: "" }))}
               >
                 {COUNTRY_CODES.map((c) => (
-                  <option key={c.code} value={c.code}>
-                    {c.flag} {c.code.replace("c", "")}
+                  <option key={c.id} value={c.id}>
+                    {c.flag} {c.code}
                   </option>
                 ))}
               </Select>
@@ -194,7 +197,7 @@ export function LeadForm({ variant, jobTitle, compact }: LeadFormProps) {
               <Label htmlFor={`${variant}-location`}>Current Location</Label>
               <Input
                 id={`${variant}-location`}
-                placeholder="Atlanta, GA"
+                placeholder="Hyderabad, India"
                 value={form.location}
                 onChange={(e) => set("location", e.target.value)}
               />
@@ -299,7 +302,7 @@ export function LeadForm({ variant, jobTitle, compact }: LeadFormProps) {
               <Label htmlFor={`${variant}-loc`}>Work Location</Label>
               <Input
                 id={`${variant}-loc`}
-                placeholder="Remote (US) / Atlanta, GA"
+                placeholder="Bengaluru / Hyderabad / Remote (India)"
                 value={form.location}
                 onChange={(e) => set("location", e.target.value)}
               />
